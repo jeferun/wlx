@@ -8,11 +8,8 @@ import LaptopSvg from '../../assets/Ic_laptop.svg';
 import BrainSvg from '../../assets/Ic_brain.svg';
 import Hr from '../../styled/Hr';
 
-const BenefitsContainer = styled.div`
+const BenefitsContainer = styled.section`
   padding: 120px 0px 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 `;
 
 const BenefitsItem = styled.div`
@@ -22,6 +19,15 @@ const BenefitsItem = styled.div`
   grid-template-columns: repeat(6, 1.1fr);
   grid-gap: 1rem;
   grid-row-gap: 1em;
+
+  @media only screen and (max-width: 780px) {
+    grid-template-columns: repeat(2, 1.5fr);
+  }
+
+  @media only screen and (max-width: 320px) {
+    grid-template-columns: 1fr;
+    font-size: 200px;
+  }
 `;
 
 const ImgBenefits = styled.img`
@@ -33,7 +39,7 @@ const LaptopContainer = styled.div`
 `;
 
 const Benefits = () => (
-  <BenefitsContainer>
+  <BenefitsContainer id="benefits" className="center">
     <b className="font-h3">
       Entre los beneficios que ofrecemos se encuentran
       <span className="font-color-blue"> </span>

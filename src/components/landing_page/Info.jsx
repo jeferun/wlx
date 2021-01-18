@@ -6,13 +6,10 @@ import { WLX_PAGE_URL } from '../../config/constants';
 
 const InfoContainer = styled.div`
   margin-top: 25px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
 `;
 
-const ImgContainer = styled.img`
+const ImgContainer = styled.div`
   position: absolute;
   bottom: 0;
   margin-bottom: 20px;
@@ -23,7 +20,7 @@ const TextContainer = styled.div`
 `;
 
 const Info = () => (
-  <InfoContainer>
+  <InfoContainer className="center">
     <TextContainer>
       <b className="font-h1">
         Gracias por
@@ -32,10 +29,12 @@ const Info = () => (
       <div className="font-h3">Te invitamos a ver mas informaci&oacute;n</div>
     </TextContainer>
 
-    <Button url={WLX_PAGE_URL} backgroundColor="color">
+    <Button as="a" href={WLX_PAGE_URL} className="color" target='_blank'>
       Conocer m&aacute;s
     </Button>
-    <ImgContainer src={LogoFooterSvg} width="120" alt="Logo" />
+    <ImgContainer>
+      <img src={LogoFooterSvg} width="120" alt="Logo" />
+    </ImgContainer>
   </InfoContainer>
 );
 

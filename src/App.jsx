@@ -5,9 +5,8 @@ import { fab } from '@fortawesome/free-brands-svg-icons';
 import { faCheckSquare, faCoffee } from '@fortawesome/free-solid-svg-icons';
 // estilos globales
 import { GlobalStyle } from './styled/GlobalStyle';
-// ruta
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-// pantalla
+// pantallas
 import LandingPageScreen from './screen/LandingPageScreen';
 
 library.add(fab, faCheckSquare, faCoffee);
@@ -18,6 +17,7 @@ function App() {
       <GlobalStyle />
       <Router>
         <Route exact path='/' component={LandingPageScreen} />
+        <Route exact path='/Register' component={LandingPageScreen} />
       </Router>
     </>
   );

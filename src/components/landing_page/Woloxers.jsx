@@ -5,11 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Button from '../../styled/Button';
 import { WLX_TWITTER_URL } from '../../config/constants';
 
-const WoloxersContainer = styled.div`
+const WoloxersContainer = styled.section`
   display: grid;
   grid-template-columns: 55% auto;
 
-  @media only screen and (max-width: 760px) {
+  @media only screen and (max-width: 780px) {
     grid-template-columns: 1fr;
   }
 `;
@@ -49,7 +49,7 @@ const Woloxers = () => (
         <FontAwesomeIcon icon={['fab', 'twitter']} size="3x" color="white" />
         <span className="font-h4 font-color-white">@Wolox</span>
       </IconContainer>
-      <Button url={WLX_TWITTER_URL} backgroundColor="trasparent">
+      <Button as="a" href={WLX_TWITTER_URL} className="trasparent" target='_blank'>
         Siguenos
       </Button>
     </WoloxerImgBackground>
