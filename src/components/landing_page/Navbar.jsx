@@ -1,5 +1,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import PropTypes from 'prop-types';
+import { PATH } from '../../config/constants';
 import LogoHeaderSvg from '../../assets/logo_full_color.svg';
 import Button from '../../styled/Button';
 
@@ -68,10 +70,8 @@ const shake = keyframes`
 
 const LogoHeader = styled.img`
   width: 250px;
-
   animation: 2s ${shake} 1s forwards;
-  ${'' /* animation: ${shake} 2s ease 0s infinite; */}
-  ${'' /* animation-play-state: paused; */}
+  cursor: pointer;
 
   @media only screen and (max-width: 950px) {
     width: 400px;
@@ -84,26 +84,40 @@ const LogoHeader = styled.img`
   }
 `;
 
-const Navbar = () => (
-  <NavbarSection>
-    <LogoHeader src={LogoHeaderSvg} alt="Logo" />
+const Navbar = ({ history }) => {
+  return (
+    <NavbarSection>
+      <LogoHeader
+        src={LogoHeaderSvg}
+        alt="Logo"
+        onClick={() => history.push(PATH.HOME)}
+      />
+      {
+        PATH.HOME === history.location.pathname ?
+          <NavbarContainer>
+            <NavUl className="navbar-nav">
+              <NavLi className="nav-item active">
+                <NavA className="nav-link font-h4" href="#welcome">
+                  Inicio
+                </NavA>
+                <NavA className="nav-link font-h4" href="#benefits">
+                  Beneficios
+                </NavA>
+                <Button to="/register" className="default">
+                  <b className='font-bold font-h4'>Registro</b>
+                </Button>
+              </NavLi>
+            </NavUl>
+          </NavbarContainer>
+          : <></>
+      }
 
-    <NavbarContainer>
-      <NavUl className="navbar-nav">
-        <NavLi className="nav-item active">
-          <NavA className="nav-link font-h4" href="#Welcome">
-            Inicio
-          </NavA>
-          <NavA className="nav-link font-h4" href="#benefits">
-            Beneficios
-          </NavA>
-          <Button to="/Register" className="default">
-            <b className='font-bold font-h4'>Registro</b>
-          </Button>
-        </NavLi>
-      </NavUl>
-    </NavbarContainer>
-  </NavbarSection>
-);
+    </NavbarSection>
+  );
+};
+
+Navbar.propTypes = {
+  history: PropTypes.object,
+};
 
 export default Navbar;

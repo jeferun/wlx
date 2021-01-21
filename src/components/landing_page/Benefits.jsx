@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+//svg
 import HourSvg from '../../assets/Ic_Hour.svg';
 import HomeOfficeSvg from '../../assets/Ic_HomeOffice.svg';
 import WorkshopsSvg from '../../assets/Ic_Workshops.svg';
 import DrinkSnacksSvg from '../../assets/Ic_DrinkSnacks.svg';
 import LaptopSvg from '../../assets/Ic_laptop.svg';
 import BrainSvg from '../../assets/Ic_brain.svg';
+//componente con estilos
 import Hr from '../../styled/Hr';
 
 const BenefitsContainer = styled.section`

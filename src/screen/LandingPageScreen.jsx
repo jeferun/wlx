@@ -1,5 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
+
 // // componentes
 import Navbar from '../components/landing_page/Navbar';
 import Welcome from '../components/landing_page/Welcome';
@@ -35,11 +37,11 @@ const Footer = styled.footer`
   }
 `;
 
-export default function LandingPageScreen() {
+const LandingPageScreen = ({ history }) => {
   return (
     <>
       <Header>
-        <Navbar />
+        <Navbar history={history} />
         <Welcome />
       </Header>
       <main>
@@ -51,4 +53,10 @@ export default function LandingPageScreen() {
       </Footer>
     </>
   );
-}
+};
+
+LandingPageScreen.propTypes = {
+  history: PropTypes.object,
+};
+
+export default LandingPageScreen;

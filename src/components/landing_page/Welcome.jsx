@@ -49,7 +49,7 @@ const ImgWelcome = styled.img`
 `;
 
 const Welcome = () => (
-  <WelcomeContainer id="Welcome">
+  <WelcomeContainer id="welcome">
     <TextsContainer className="font-h2">
       <div>Bienvenido a tu</div>
       <div>

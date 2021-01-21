@@ -20,7 +20,7 @@ export const GlobalStyle = createGlobalStyle`
     grid-template-columns: 1fr;
     font-family: ${({ theme }) => theme.font.family.primary};
   }
-  div.center {
+  .center {
     display: flex;
     flex-direction: column;
     justify-content: center;
