@@ -29,21 +29,26 @@ const appear = keyframes`
   }
 `;
 
-const ImgWelcome = styled.img`
-  height: 28vw;
-  transform: scaleX(-1);
+const ImgContainer = styled.div`
+  display: flex;
+  justify-content: center;
 
-  transition: 1s;
-	opacity: 0;
-	animation: 1s ${appear} 0.5s forwards;
+  img {
+    height: 28vw;
+    transform: scaleX(-1);
 
-  @media only screen and (max-width: 780px) {
-    height: 25rem;
-  }
+    transition: 1s;
+    opacity: 0;
+    animation: 1s ${appear} 0.5s forwards;
 
-  @media only screen and (max-width: 320px) {
-    height: 18rem;
-    margin-left: 0px;
+    @media only screen and (max-width: 780px) {
+      height: 25rem;
+    }
+
+    @media only screen and (max-width: 450px) {
+      height: 18rem;
+      margin-left: 0px;
+    }
   }
 
 `;
@@ -60,9 +65,9 @@ const Welcome = () => (
       </span>
     </TextsContainer>
 
-    <div>
-      <ImgWelcome src={WelcomeImg} alt="Welcome" />
-    </div>
+    <ImgContainer>
+      <img src={WelcomeImg} alt="Welcome" />
+    </ImgContainer>
   </WelcomeContainer>
 );
 

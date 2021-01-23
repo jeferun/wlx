@@ -20,6 +20,10 @@ export const GlobalStyle = createGlobalStyle`
     grid-template-columns: 1fr;
     font-family: ${({ theme }) => theme.font.family.primary};
   }
+  select,
+  option {
+    color: #757575;
+  }
   .center {
     display: flex;
     flex-direction: column;
@@ -55,18 +59,32 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  @media only screen and (max-width: 360px) {
+@media only screen and (max-width: 780px) {
     .font-h1 {
-      font-size: 30px !important;
+      font-size: 2.5rem !important;
     }
     .font-h2 {
-      font-size: 28px !important;
+      font-size: 2.4rem !important;
     }
     .font-h3 {
-      font-size: 25px !important;
+      font-size: 1.8rem !important;
     }
     .font-h4 {
-      font-size: 16px !important;
+      font-size: 1.4rem !important;
+    }
+  }
+  @media only screen and (max-width: 450px) {
+    .font-h1 {
+      font-size: 2rem !important;
+    }
+    .font-h2 {
+      font-size: 1.8rem !important;
+    }
+    .font-h3 {
+      font-size: 1.6rem !important;
+    }
+    .font-h4 {
+      font-size: 1.2rem !important;
     }
   }
 

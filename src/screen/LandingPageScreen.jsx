@@ -32,7 +32,7 @@ const Footer = styled.footer`
     min-height: 500px;
     position: relative;
 
-  @media only screen and (max-width: 360px) {
+  @media only screen and (max-width: 690px) {
     padding: 2px 8px 0 8px !important;
   }
 `;

@@ -26,7 +26,7 @@ const BenefitsItem = styled.div`
     grid-template-columns: repeat(2, 1.5fr);
   }
 
-  @media only screen and (max-width: 320px) {
+  @media only screen and (max-width: 450px) {
     grid-template-columns: 1fr;
     font-size: 200px;
   }

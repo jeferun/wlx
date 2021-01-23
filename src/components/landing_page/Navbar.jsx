@@ -1,7 +1,9 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
 import { PATH } from '../../config/constants';
+import { logout } from '../../redux/registerDucks';
 import LogoHeaderSvg from '../../assets/logo_full_color.svg';
 import Button from '../../styled/Button';
 
@@ -24,7 +26,7 @@ const NavbarSection = styled.div`
     justify-items: center;
   }
 
-  @media only screen and (max-width: 360px) {
+  @media only screen and (max-width: 450px) {
     padding: 5px !important;
   }
 
@@ -69,28 +71,37 @@ const shake = keyframes`
 
 
 const LogoHeader = styled.img`
-  width: 250px;
+  width: 18rem;
   animation: 2s ${shake} 1s forwards;
   cursor: pointer;
 
   @media only screen and (max-width: 950px) {
-    width: 400px;
+    width: 22rem;
     margin-bottom: 20px;
   }
 
-  @media only screen and (max-width: 360px) {
-    width: 200px;
+  @media only screen and (max-width: 560px) {
+    width: 20rem;
+    margin-bottom: 20px;
+  }
+
+  @media only screen and (max-width: 450px) {
+    width: 16rem;
     margin-bottom: 20px;
   }
 `;
 
 const Navbar = ({ history }) => {
+  const dispatch = useDispatch();
+  const store = useSelector((store) => store);
+  let isUserAuth = store.registerUser.isUserAuth;
+
   return (
     <NavbarSection>
       <LogoHeader
         src={LogoHeaderSvg}
         alt="Logo"
-        onClick={() => history.push(PATH.HOME)}
+        onClick={() => history.push('/')}
       />
       {
         PATH.HOME === history.location.pathname ?
@@ -104,12 +115,25 @@ const Navbar = ({ history }) => {
                   Beneficios
                 </NavA>
                 <Button to="/register" className="default">
-                  <b className='font-bold font-h4'>Registro</b>
+                  <b className='font-bold font-h4'>{isUserAuth ? 'Lista' : 'Registro'}</b>
                 </Button>
               </NavLi>
             </NavUl>
           </NavbarContainer>
-          : <></>
+          : isUserAuth ?
+            <NavbarContainer>
+              <NavUl className="navbar-nav">
+                <NavLi className="nav-item active">
+                  <Button
+                    as="a"
+                    className="default"
+                    onClick={() => dispatch(logout(history))}>
+                    <b className='font-bold font-h4'>Salir</b>
+                  </Button>
+                </NavLi>
+              </NavUl>
+            </NavbarContainer>
+            : <></>
       }
 
     </NavbarSection>
