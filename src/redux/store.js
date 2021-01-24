@@ -1,12 +1,14 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 
-import provincesDucks from './provincesDucks';
-import registerDucks from './registerDucks';
+import provincesReducer from './provincesDucks';
+import registerReducer from './registerDucks';
+import techReducer from './techDucks';
 
 const rootReducer = combineReducers({
-  listProvinces: provincesDucks,
-  registerUser: registerDucks,
+  listProvinces: provincesReducer,
+  registerUser: registerReducer,
+  listTech: techReducer,
 });
 
 // configurar extensión

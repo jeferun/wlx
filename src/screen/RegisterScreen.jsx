@@ -30,7 +30,13 @@ const Form = styled.form`
   box-shadow: 0px 1px 5px 1px ${({ theme }) => theme.colors.default};
 
   @media only screen and (max-width: 980px) {
-    width: 80vw;
+    width: 94vw;
+  }
+
+  @media only screen and (max-width: 450px) {
+    padding: 0.2rem;
+    border-radius: none;
+    box-shadow: none;
   }
 `;
 
@@ -137,14 +143,14 @@ const RegisterScreen = ({ history }) => {
           <FormItem
             as="select"
             name="province"
+            className={errors?.country && 'error'}
+            defaultValue=""
             ref={register({
               required: {
                 value: true,
                 message: `${msgRequiered}`
               }
-            })}
-            className={errors?.country && 'error'}
-            defaultValue="">
+            })}>
             <option value="" disabled hidden>Provincias</option>
             {
               provinces.map(
@@ -185,6 +191,10 @@ const RegisterScreen = ({ history }) => {
               maxLength: {
                 value: 10,
                 message: `${msgMaxLength}`
+              },
+              pattern: {
+                value: /^[0-9]*$/,
+                message: 'El campo permite solo números'
               }
             })}
           />

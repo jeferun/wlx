@@ -22,6 +22,7 @@ export const GlobalStyle = createGlobalStyle`
   }
   select,
   option {
+    background-color: #ffffff;
     color: #757575;
   }
   .center {
@@ -57,6 +58,13 @@ export const GlobalStyle = createGlobalStyle`
   }
   p {
     margin: 0;
+  }
+  .scroll-table {
+    display: flex;
+    overflow: auto;
+    @media only screen and (max-width: 980px) {
+      width: 94vw;
+    }
   }
 
 @media only screen and (max-width: 780px) {

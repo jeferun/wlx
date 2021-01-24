@@ -1,10 +1,8 @@
 export const WLX_TWITTER_URL = 'https://twitter.com/wolox';
 export const WLX_PAGE_URL = 'https://wolox.com.ar';
 
-export const SELECT_TYPES = ['All', 'Back-End', 'Front-End', 'Mobile'];
-
 export const PATH = {
-  HOME: '/home',
+  HOME: '/',
   REGISTER: '/register',
   LIST_TECH: '/list-tech',
   TERMS: '/terms-and-conditions'
@@ -61,6 +59,7 @@ export const PROVINCES = [
   ]
 ];
 
-export const API_TEST_WLX = 'http://private-8e8921-woloxfrontendinverview.apiary-mock.com/';
+export const API_TEST_WLX = 'https://private-8e8921-woloxfrontendinverview.apiary-mock.com/';
 
-// export const OPTIONS_FILTER = { name, type };
+export const SELECT_TYPES = ['All', 'Back-End', 'Front-End', 'Mobile'];
+

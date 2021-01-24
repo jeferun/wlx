@@ -1,8 +1,5 @@
 import { registerUser } from '../api/user';
 
-localStorage.getItem('token');
-localStorage.getItem('user');
-
 // state initial
 const initialData = {
   user: localStorage.getItem('user') ?? {},
@@ -57,6 +54,8 @@ export const setDataUser = (userData) => async (dispatch) => {
 export const logout = (history) => (dispatch) => {
   localStorage.removeItem('token');
   localStorage.removeItem('user');
+  localStorage.removeItem('favoriteTech');
+  localStorage.removeItem('countFavorites');
 
   dispatch({
     type: USER_AUTH_OK,

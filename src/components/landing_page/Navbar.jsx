@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import styled, { keyframes } from 'styled-components';
 import PropTypes from 'prop-types';
+import StarSvg from '../../assets/star.svg';
 import { PATH } from '../../config/constants';
 import { logout } from '../../redux/registerDucks';
 import LogoHeaderSvg from '../../assets/logo_full_color.svg';
@@ -91,10 +92,20 @@ const LogoHeader = styled.img`
   }
 `;
 
+const ImgStarBackground = styled.span`
+    background-size: contain;
+    background-image: url(${StarSvg});
+    background-repeat: no-repeat;
+    margin-right: .8rem;
+    padding: 16px 18px;
+    font-size: 14px;
+`;
+
 const Navbar = ({ history }) => {
   const dispatch = useDispatch();
   const store = useSelector((store) => store);
-  let isUserAuth = store.registerUser.isUserAuth;
+  let { isUserAuth } = store.registerUser;
+  let { countFavorites } = store.listTech;
 
   return (
     <NavbarSection>
@@ -123,6 +134,13 @@ const Navbar = ({ history }) => {
           : isUserAuth ?
             <NavbarContainer>
               <NavUl className="navbar-nav">
+                <NavLi>
+                  {
+                    countFavorites > 0 &&
+                    <ImgStarBackground>{countFavorites}</ImgStarBackground>
+                  }
+
+                </NavLi>
                 <NavLi className="nav-item active">
                   <Button
                     as="a"

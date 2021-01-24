@@ -26,11 +26,6 @@ export default function Router() {
       <BrowserRouter>
         <Route
           exact
-          path="/">
-          <Redirect to={PATH.HOME} />
-        </Route>
-        <Route
-          exact
           path={PATH.LIST_TECH}
           render={() => routeAuth()}
         />
