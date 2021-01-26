@@ -18,4 +18,4 @@ npm install
 - Redux Ducks
 - React Router
 
-![Captura](https://github.com/jeferun/wlx/screen-wlx.png?raw=true)
+![Captura](https://github.com/jeferun/wlx/blob/master/screen-wlx.png?raw=true)
