@@ -25,7 +25,12 @@ const Filter = ({ filterListTech, type, nameTech }) => {
           type="text"
           placeholder="Tecnología"
           value={nameTech}
-          onChange={(event) => filterListTech(event, 'name')}
+          onChange={({ target }) =>
+            filterListTech({
+              valueName: target.value,
+              valueType: type
+            }, 'name')
+          }
         />
       </label>
       <label>
@@ -33,7 +38,12 @@ const Filter = ({ filterListTech, type, nameTech }) => {
           <FormItem
           as="select"
           value={type}
-          onChange={(event) => filterListTech(event, 'type')}
+          onChange={({ target }) =>
+            filterListTech({
+              valueName: nameTech,
+              valueType: target.value
+            }, 'type')
+          }
         >
           {
             SELECT_TYPES.map(
@@ -47,9 +57,9 @@ const Filter = ({ filterListTech, type, nameTech }) => {
 };
 
 Filter.propTypes = {
-  filterListTech: PropTypes.func,
-  type: PropTypes.string,
-  nameTech: PropTypes.string,
+  filterListTech: PropTypes.func.isRequired,
+  type: PropTypes.string.isRequired,
+  nameTech: PropTypes.string.isRequired,
 };
 
 export default Filter;

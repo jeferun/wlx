@@ -3,23 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 // estilos
 import styled from 'styled-components';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import PropTypes from 'prop-types';
 import Navbar from '../components/landing_page/Navbar';
 import Filter from '../components/tech/Filter';
+import Header from '../components/tech/Header';
+import ListItem from '../components/tech/ListItem';
 
 import {
   getListTech,
   getFilterListTech,
   setFavorites,
 } from '../redux/techDucks';
-
-const style = {
-  display: 'grid',
-  gridTemplateColumns: 'repeat(8, 1fr)',
-  textTransform: 'capitalize',
-  padding: '0.6rem',
-};
 
 const ListContainer = styled.div`
   padding: 0.5rem;
@@ -42,33 +36,14 @@ const ListStyled = styled.div`
   }
 `;
 
-const HeadRow = styled.div`
-  ${style};
-  background-color: ${({ theme }) => theme.colors.primary};
-
-  & > span {
-    color: #ffffff;
-  }
-`;
-
-const BodyRow = styled.div`
-  ${style};
-  margin: 0.5rem;
-`;
-
-const Icon = styled(FontAwesomeIcon)`
-  cursor: pointer;
-`;
-
 const ListTechScreen = ({ history }) => {
-  let countFavorite = 0;
   const initialType = 'All';
   const [type, setType] = useState(initialType);
   const [nameTech, setNameTech] = useState('');
   const [orderDesc, setOrderDesc] = useState('');
 
   const dispatch = useDispatch();
-  const { list, filterList, favorites } = useSelector(
+  const { list, filterList, favorites, countFavorites } = useSelector(
     ({ listTech }) => listTech
   );
 
@@ -85,22 +60,17 @@ const ListTechScreen = ({ history }) => {
     listTechnology(newList);
   }
 
-  function filterListTech({ target }, option) {
-    let newList = [];
-    let value = target.value;
-    let lowerCaseValue = value.toLowerCase();
+  function filterListTech({ valueName, valueType }, option) {
+    let newList = [...list];
+    let lowerCaseValue = valueName.toLowerCase();
 
-    if (option === 'type') {
-      setType(value);
-      newList = list.filter((l) => l.type === value || initialType === value);
-    }
+    option === 'type' && setType(valueType);
+    option === 'name' && setNameTech(valueName);
 
-    if (option === 'name') {
-      setNameTech(value);
-      newList = list.filter((l) =>
-        l.tech.toLowerCase().includes(lowerCaseValue)
-      );
-    }
+    newList = newList.filter((l) => l.type === valueType || initialType === valueType);
+    newList = newList.filter((l) =>
+      l.tech.toLowerCase().includes(lowerCaseValue)
+    );
 
     listTechnology(newList);
   }
@@ -125,6 +95,16 @@ const ListTechScreen = ({ history }) => {
     return filterList;
   }
 
+  function addFavorites(key, status, count) {
+    dispatch(
+      setFavorites(
+        key,
+        status,
+        count
+      )
+    );
+  }
+
   return (
     <>
       <Navbar history={history} />
@@ -137,78 +117,21 @@ const ListTechScreen = ({ history }) => {
 
         <div className="scroll-table">
           <ListStyled>
-            <HeadRow>
-              <span>
-                <b className="font-h4">logo</b>
-              </span>
-              <span>
-                <b className="font-h4">tecnolog&iacute;a</b>
-                &nbsp;
-              <Icon
-                  icon={['fas', 'arrows-alt-v']}
-                  size="lg"
-                  color="#000000"
-                  onClick={() => changeOrder('tech')}
-                />
-              </span>
-              <span>
-                <b className="font-h4">a&ntilde;o</b>
-              </span>
-              <span>
-                <b className="font-h4">autor</b>
-              </span>
-              <span>
-                <b className="font-h4">licencia</b>
-              </span>
-              <span>
-                <b className="font-h4">idioma</b>
-              </span>
-              <span>
-                <b className="font-h4">tipo</b>
-              </span>
-              <span>
-                <b className="font-h4">favorito</b>
-              </span>
-            </HeadRow>
+
+            <Header changeOrder={changeOrder} />
 
             {filterList.map((item, p) => {
-              let favorite = false;
-              favorite = favorites[`${item.tech}_${item.year}`];
-              let starColor = '#D6DBDF';
-
-              if (favorite) {
-                starColor = '#D4AC0D';
-                countFavorite++;
-              }
+              let isFavorite = favorites[`${item.tech}_${item.year}`] ?? false;
 
               return (
-                <BodyRow key={p}>
-                  <span>
-                    <img src={item.logo} width="60" alt="logo" />
-                  </span>
-                  <span>{item.tech}</span>
-                  <span>{item.year}</span>
-                  <span>{item.author}</span>
-                  <span>{item.license}</span>
-                  <span>{item.language}</span>
-                  <span>{item.type}</span>
-                  <span>
-                    <Icon
-                      icon={['fas', 'star']}
-                      size="2x"
-                      color={starColor}
-                      onClick={() =>
-                        dispatch(
-                          setFavorites(
-                            [`${item.tech}_${item.year}`],
-                            !favorite,
-                            countFavorite
-                          )
-                        )
-                      }
-                    />
-                  </span>
-                </BodyRow>
+                <ListItem
+                  key={p}
+                  item={item}
+                  starColor={isFavorite ? '#D4AC0D' : '#D6DBDF'}
+                  addFavorites={addFavorites}
+                  isFavorite={isFavorite}
+                  countFavorites={countFavorites}
+                />
               );
             })}
 
@@ -223,7 +146,7 @@ const ListTechScreen = ({ history }) => {
 };
 
 ListTechScreen.propTypes = {
-  history: PropTypes.object
+  history: PropTypes.object.isRequired
 };
 
 export default ListTechScreen;

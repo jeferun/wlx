@@ -39,6 +39,11 @@ export const GlobalStyle = createGlobalStyle`
   span.font-color-white {
     color: #ffffff;
   }
+  span.error {
+    display: flex;
+    color: ${({ theme }) => theme.colors.danger};
+    font-size: 12px;
+  }
   .font-h1 {
     font-size: 2.8rem;
   }
@@ -65,6 +70,10 @@ export const GlobalStyle = createGlobalStyle`
     @media only screen and (max-width: 980px) {
       width: 94vw;
     }
+  }
+
+  .pointer {
+    cursor: pointer;
   }
 
 @media only screen and (max-width: 780px) {

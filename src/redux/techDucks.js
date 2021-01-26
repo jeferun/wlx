@@ -9,7 +9,10 @@ const initialData = {
   list: [],
   filterList: [],
   favorites: localFavoriteTech,
-  countFavorites: localStorage.getItem('countFavorites') ?? 0
+  countFavorites:
+    localStorage.getItem('countFavorites') ?
+      parseInt(localStorage.getItem('countFavorites')) :
+      0
 };
 
 // constatntes
@@ -72,21 +75,21 @@ export const getFilterListTech = (list) => (dispatch) => {
 };
 
 // add favorites
-export const setFavorites = (key, status, countFavorite) => (dispatch, getState) => {
+export const setFavorites = (key, status, countFavorites) => (dispatch, getState) => {
   let initialFavorite = getState().listTech.favorites;
   let newFavorites = {
     ...initialFavorite,
     [`${key}`]: status
   };
-  let newCountFavorite = status ? countFavorite + 1 : countFavorite - 1;
+  let newCountFavorites = status ? countFavorites + 1 : countFavorites - 1;
 
   dispatch({
     type: FAVORITES_LIST_TECH,
-    payload: [newFavorites, newCountFavorite],
+    payload: [newFavorites, newCountFavorites],
   });
 
   localStorage.setItem('favoriteTech', JSON.stringify(newFavorites));
-  localStorage.setItem('countFavorites', newCountFavorite);
+  localStorage.setItem('countFavorites', newCountFavorites);
 };
 
 export default techReducer;

@@ -56,7 +56,7 @@ const LandingPageScreen = ({ history }) => {
 };
 
 LandingPageScreen.propTypes = {
-  history: PropTypes.object,
+  history: PropTypes.object.isRequired,
 };
 
 export default LandingPageScreen;

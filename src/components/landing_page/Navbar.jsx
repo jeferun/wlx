@@ -159,7 +159,7 @@ const Navbar = ({ history }) => {
 };
 
 Navbar.propTypes = {
-  history: PropTypes.object,
+  history: PropTypes.object.isRequired,
 };
 
 export default Navbar;
