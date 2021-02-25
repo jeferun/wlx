@@ -63,3 +63,37 @@ export const API_TEST_WLX = 'https://private-8e8921-woloxfrontendinverview.apiar
 
 export const SELECT_TYPES = ['All', 'Back-End', 'Front-End', 'Mobile'];
 
+
+// new 
+
+// configuracion titulos tabla
+export const TITLES_TABLE = [
+  {
+    name: 'tecnologia',
+    column: 'tech',
+    icon: {
+      name: 'arrows-alt-v',
+      size: 'lg',
+      color: '#000000',
+      func: 'order',
+    }
+  },
+  { name: 'año' },
+  { name: 'autor' },
+  { name: 'licencia' },
+  {
+    name: 'idioma',
+    column: 'language',
+    icon: {
+      name: 'arrows-alt-v',
+      size: 'lg',
+      color: '#000000',
+      func: 'order',
+    }
+  },
+  { name: 'tipo' },
+  { name: 'logo' },
+  // { name: 'favorito' },
+];
+
+export const LOGO = 'logo';

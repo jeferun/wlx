@@ -15,41 +15,53 @@ const HeaderRow = styled.div`
   }
 `;
 
-const Header = ({ changeOrder }) => (
-  <HeaderRow>
-    <span>
-      <b className="font-h4">logo</b>
-    </span>
-    <span>
-      <b className="font-h4">tecnolog&iacute;a</b>
-      &nbsp;
+const Header = ({ changeOrder }) => {
+
+  const OrderIcon = (value) => <FontAwesomeIcon className="pointer"
+    icon={['fas', 'arrows-alt-v']}
+    size="lg"
+    color="#000000"
+    onClick={() => changeOrder(value)}
+  />;
+
+  return (
+    <HeaderRow>
+      <span>
+        <b className="font-h4">logo</b>
+      </span>
+      <span>
+        <b className="font-h4">tecnolog&iacute;a</b>
+        &nbsp;
         <FontAwesomeIcon className="pointer"
-        icon={['fas', 'arrows-alt-v']}
-        size="lg"
-        color="#000000"
-        onClick={() => changeOrder('tech')}
-      />
-    </span>
-    <span>
-      <b className="font-h4">a&ntilde;o</b>
-    </span>
-    <span>
-      <b className="font-h4">autor</b>
-    </span>
-    <span>
-      <b className="font-h4">licencia</b>
-    </span>
-    <span>
-      <b className="font-h4">idioma</b>
-    </span>
-    <span>
-      <b className="font-h4">tipo</b>
-    </span>
-    <span>
-      <b className="font-h4">favorito</b>
-    </span>
-  </HeaderRow>
-);
+          icon={['fas', 'arrows-alt-v']}
+          size="lg"
+          color="#000000"
+          onClick={() => changeOrder('tech')}
+        />
+      </span>
+      <span>
+        <b className="font-h4">a&ntilde;o</b>
+        &nbsp;
+      <OrderIcon value='year' />
+      </span>
+      <span>
+        <b className="font-h4">autor</b>
+      </span>
+      <span>
+        <b className="font-h4">licencia</b>
+      </span>
+      <span>
+        <b className="font-h4">idioma</b>
+      </span>
+      <span>
+        <b className="font-h4">tipo</b>
+      </span>
+      <span>
+        <b className="font-h4">favorito</b>
+      </span>
+    </HeaderRow>
+  );
+};
 
 Header.propTypes = {
   changeOrder: PropTypes.func.isRequired

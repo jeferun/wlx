@@ -3,7 +3,7 @@ import thunk from 'redux-thunk';
 
 import provincesReducer from './provincesDucks';
 import registerReducer from './registerDucks';
-import techReducer from './techDucks';
+import techReducer from './tech2Ducks';
 
 const rootReducer = combineReducers({
   listProvinces: provincesReducer,
