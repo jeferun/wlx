@@ -9,7 +9,7 @@ import Loading from '../styled/Loading';
 const LandingPageScreen = lazy(() => import('../screen/LandingPageScreen'));
 const RegisterScreen = lazy(() => import('../screen/RegisterScreen'));
 const TermsScreen = lazy(() => import('../screen/TermsConditionsScreen'));
-const ListTechScreen = lazy(() => import('../screen/ListTechScreen'));
+const ListTechScreen = lazy(() => import('../screen/ListTech2Screen'));
 
 export default function Router() {
   const { isUserAuth } = useSelector(({ registerUser }) => registerUser);
